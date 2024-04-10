@@ -1,5 +1,6 @@
 package pl.swosek.sample.penguin.data.controller.dto;
 
+import com.opencsv.bean.CsvBindByName;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import lombok.AccessLevel;
@@ -25,12 +26,23 @@ import lombok.ToString;
 public class GetPenguinResponse {
 
     /**
-     * Calendar name.
+     * Scientific name.
      */
-    @Schema(
-            description = "Penguin name.",
-            example = "Kokosanka"
-    )
-    private String name;
+    private String scientificName;
+
+    /**
+     * Number of occurrences.
+     */
+    private String numberOfOccurrences;
+
+    /**
+     * Accepted scientific name.
+     */
+    private String acceptedScientificName;
+
+    /**
+     * Species.
+     */
+    private String species;
 
 }

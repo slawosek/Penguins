@@ -1,11 +1,11 @@
 package pl.swosek.sample.penguin.data.controller.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
+import pl.swosek.sample.penguin.csv.parser.ReaderImplementation;
 import pl.swosek.sample.penguin.data.controller.api.PenguinController;
-import pl.swosek.sample.penguin.data.controller.dto.GetPenguinResponse;
 import pl.swosek.sample.penguin.data.controller.dto.GetPenguinsResponse;
-
-import java.util.List;
+import pl.swosek.sample.penguin.data.controller.function.PenguinsToResponseFunction;
 
 /**
  * Default penguin controller implementation.
@@ -13,19 +13,26 @@ import java.util.List;
 @RestController
 public class PenguinDefaultController implements PenguinController {
 
+    private final ReaderImplementation readerImplementation;
+
+    private final PenguinsToResponseFunction function;
+
+    @Autowired
+    public PenguinDefaultController(
+            ReaderImplementation readerImplementation,
+            PenguinsToResponseFunction function
+    ) {
+        this.readerImplementation = readerImplementation;
+        this.function = function;
+    }
+
     @Override
     public GetPenguinsResponse getPenguins() {
-        return GetPenguinsResponse.builder()
-                .penguins(List.of(
-                                GetPenguinResponse.builder()
-                                        .name("Kokosanka")
-                                        .build(),
-                                GetPenguinResponse.builder()
-                                        .name("Britney")
-                                        .build()
-                        )
-                )
-                .build();
+        try {
+            return function.apply(readerImplementation.readDataFromCsv());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

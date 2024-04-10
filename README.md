@@ -1,6 +1,6 @@
 # Penguins Project
 
-Application for displaying penguins data.
+Application for displaying penguins data from https://doi.org/10.15468/dl.nwwbvg and adding context from other sources.
 
 [![MIT licensed][shield-mit]](LICENSE)
 
