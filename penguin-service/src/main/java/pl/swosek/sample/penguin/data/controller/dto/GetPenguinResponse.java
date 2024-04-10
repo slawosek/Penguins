@@ -1,8 +1,6 @@
 package pl.swosek.sample.penguin.data.controller.dto;
 
-import com.opencsv.bean.CsvBindByName;
 import io.swagger.v3.oas.annotations.media.Schema;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

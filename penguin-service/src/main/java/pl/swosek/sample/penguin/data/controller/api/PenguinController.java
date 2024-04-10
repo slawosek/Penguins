@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.swosek.sample.penguin.data.controller.dto.GetPenguinsResponse;
 
-import java.util.List;
-
 /**
  * Controller for managing penguins.
  */
