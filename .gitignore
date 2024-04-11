@@ -6,3 +6,13 @@
 
 ### Maven ###
 target/
+
+### npm ###
+node_modules/
+
+### Angular CLI ###
+dist/
+.angular/
+
+### VS Code ###
+.vscode/
