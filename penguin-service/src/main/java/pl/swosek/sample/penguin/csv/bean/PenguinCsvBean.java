@@ -32,7 +32,7 @@ public class PenguinCsvBean {
     private String acceptedTaxonKey;
 
     @CsvBindByName
-    private String numberOfOccurrences;
+    private Integer numberOfOccurrences;
 
     @CsvBindByName
     private String acceptedScientificName;

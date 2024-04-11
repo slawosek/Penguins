@@ -40,7 +40,7 @@ public class Penguin {
     /**
      * Number of occurrences.
      */
-    private String numberOfOccurrences;
+    private Integer numberOfOccurrences;
 
     /**
      * Accepted scientific name.

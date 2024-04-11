@@ -31,7 +31,7 @@ public class GetPenguinResponse {
     /**
      * Number of occurrences.
      */
-    private String numberOfOccurrences;
+    private Integer numberOfOccurrences;
 
     /**
      * Accepted scientific name.
