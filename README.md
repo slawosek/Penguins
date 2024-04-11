@@ -8,4 +8,10 @@ Application for displaying penguins data from https://doi.org/10.15468/dl.nwwbvg
 
 Project is licensed under [The MIT License](LICENSE).
 
+Penguin species taken from source below:
+
+GBIF.org (10 April 2024) GBIF Occurrence Download  https://doi.org/10.15468/dl.nwwbvg
+
+Due to unwanted offsets values in source data where fixed best way I could.
+
 [shield-mit]: https://img.shields.io/badge/license-MIT-blue.svg
