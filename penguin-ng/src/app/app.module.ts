@@ -13,15 +13,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import {
-  CdkCell,
-  CdkCellDef,
-  CdkColumnDef,
-  CdkHeaderCell,
-  CdkHeaderCellDef, CdkHeaderRow,
-  CdkHeaderRowDef, CdkRow,
-  CdkRowDef, CdkTable
-} from "@angular/cdk/table";
+import { CdkTableModule } from "@angular/cdk/table";
+import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
+import { AboutComponent } from './info/view/about/about.component';
 
 /**
  * Application main module.
@@ -31,7 +25,8 @@ import {
     AppComponent,
     MainComponent,
     MainNavigationComponent,
-    PenguinTableViewComponent
+    PenguinTableViewComponent,
+    AboutComponent
   ],
   imports: [
     AppRoutingModule,
@@ -43,16 +38,10 @@ import {
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    CdkHeaderCell,
-    CdkCell,
-    CdkColumnDef,
-    CdkHeaderRowDef,
-    CdkRowDef,
-    CdkCellDef,
-    CdkHeaderCellDef,
-    CdkHeaderRow,
-    CdkRow,
-    CdkTable
+    CdkTableModule,
+    MatMenu,
+    MatMenuItem,
+    MatMenuTrigger
   ],
   providers: [
 
