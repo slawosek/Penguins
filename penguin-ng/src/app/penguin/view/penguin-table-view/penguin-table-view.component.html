@@ -3,26 +3,26 @@
     <h2 class="header__h2">Penguins</h2>
   </header>
   <section class="article__section">
-    <table *ngIf="penguins | async as penguins" mat-table [dataSource]="penguins.penguins" >
-      <ng-container matColumnDef="scientificName">
-        <th mat-header-cell *matHeaderCellDef>Scientific Name</th>
-        <td mat-cell *matCellDef="let penguin">{{penguin.scientificName}}</td>
+    <table *ngIf="penguins | async as penguins" cdk-table [dataSource]="penguins.penguins" >
+      <ng-container cdkColumnDef="scientificName">
+        <th cdk-header-cell *cdkHeaderCellDef>Scientific Name</th>
+        <td cdk-cell *cdkCellDef="let penguin">{{penguin.scientificName}}</td>
       </ng-container>
-      <ng-container matColumnDef="numberOfOccurrences">
-        <th mat-header-cell *matHeaderCellDef>Number Of Occurrences</th>
-        <td mat-cell *matCellDef="let penguin">{{penguin.numberOfOccurrences}}</td>
+      <ng-container cdkColumnDef="numberOfOccurrences">
+        <th cdk-header-cell *cdkHeaderCellDef>Number Of Occurrences</th>
+        <td cdk-cell *cdkCellDef="let penguin">{{penguin.numberOfOccurrences}}</td>
       </ng-container>
-      <ng-container matColumnDef="acceptedScientificName">
-        <th mat-header-cell *matHeaderCellDef>Accepted Scientific Name</th>
-        <td mat-cell *matCellDef="let penguin">{{penguin.acceptedScientificName}}</td>
+      <ng-container cdkColumnDef="acceptedScientificName">
+        <th cdk-header-cell *cdkHeaderCellDef>Accepted Scientific Name</th>
+        <td cdk-cell *cdkCellDef="let penguin">{{penguin.acceptedScientificName}}</td>
       </ng-container>
-      <ng-container matColumnDef="species">
-        <th mat-header-cell *matHeaderCellDef>Species</th>
-        <td mat-cell *matCellDef="let penguin">{{penguin.species}}</td>
+      <ng-container cdkColumnDef="species">
+        <th cdk-header-cell *cdkHeaderCellDef>Species</th>
+        <td cdk-cell *cdkCellDef="let penguin">{{penguin.species}}</td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </section>
 </article>
