@@ -15,6 +15,7 @@ public class PenguinToResponseFunction implements Function<Penguin, GetPenguinRe
     @Override
     public GetPenguinResponse apply(Penguin penguin) {
         return GetPenguinResponse.builder()
+                .taxonKey(penguin.getTaxonKey())
                 .scientificName(penguin.getScientificName())
                 .numberOfOccurrences(penguin.getNumberOfOccurrences())
                 .acceptedScientificName(penguin.getAcceptedScientificName())

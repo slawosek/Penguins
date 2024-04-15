@@ -24,6 +24,11 @@ import lombok.ToString;
 public class GetPenguinResponse {
 
     /**
+     * Taxon key used as ID.
+     */
+    private String taxonKey;
+
+    /**
      * Scientific name.
      */
     private String scientificName;
