@@ -6,6 +6,7 @@ import pl.swosek.sample.penguin.data.repository.entity.Penguin;
 import pl.swosek.sample.penguin.data.service.api.PenguinService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Penguin service default implementation.
@@ -25,6 +26,11 @@ public class PenguinDefaultService implements PenguinService {
     @Override
     public List<Penguin> findAllPenguins() {
         return repository.findAll();
+    }
+
+    @Override
+    public Optional<Penguin> findPenguin(String taxonKey) {
+        return repository.findById(taxonKey);
     }
 
 }
