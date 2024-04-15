@@ -1,3 +1,13 @@
 .mdc-data-table__content {
   justify-content: center;
 }
+
+.table__button {
+  background-color: #007e68;
+  color: #ffffff;
+  border-color: black;
+}
+
+.table__button:hover {
+  text-decoration: underline;
+}

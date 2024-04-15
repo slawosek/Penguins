@@ -5,5 +5,6 @@ export const PenguinTableColumns: string[] = [
   'scientificName',
   'numberOfOccurrences',
   'acceptedScientificName',
-  'species'
+  'species',
+  'actions'
 ];

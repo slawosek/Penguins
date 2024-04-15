@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PenguinService } from "../../service/penguin.service";
-import { Penguin } from "../../model/penguin";
 import { Observable } from "rxjs";
 import { Penguins } from "../../model/penguins";
 import { PenguinTableColumns } from "../model/penguin-table-columns";
+import { Penguin } from "../../model/penguin";
 
 @Component({
   selector: 'app-penguin-table-view',
@@ -28,4 +28,7 @@ export class PenguinTableViewComponent {
   constructor(private service: PenguinService) {
   }
 
+  editPenguin(penguin: Penguin) {
+      console.log('Taxon key: ' + penguin.taxonKey);
+  }
 }

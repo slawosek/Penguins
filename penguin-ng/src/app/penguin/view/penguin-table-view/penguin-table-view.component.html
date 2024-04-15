@@ -20,6 +20,12 @@
         <th cdk-header-cell *cdkHeaderCellDef>Species</th>
         <td cdk-cell *cdkCellDef="let penguin">{{penguin.species}}</td>
       </ng-container>
+      <ng-container cdkColumnDef="actions">
+        <th cdk-header-cell *cdkHeaderCellDef>Actions</th>
+        <td cdk-cell *cdkCellDef="let penguin">
+          <button mat-raised-button class="table__button" (click)="editPenguin(penguin)">Edit</button>
+        </td>
+      </ng-container>
 
       <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
       <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
