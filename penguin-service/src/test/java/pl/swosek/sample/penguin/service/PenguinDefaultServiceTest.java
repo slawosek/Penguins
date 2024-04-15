@@ -10,6 +10,7 @@ import pl.swosek.sample.penguin.data.repository.entity.Penguin;
 import pl.swosek.sample.penguin.data.service.impl.PenguinDefaultService;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -50,6 +51,26 @@ public class PenguinDefaultServiceTest {
                 .thenReturn(expected);
 
         List<Penguin> actual = service.findAllPenguins();
+
+        assertThat(expected).isEqualTo(actual);
+    }
+
+    @Test
+    public void getPenguin() {
+        Optional<Penguin> expected =
+                Optional.of(
+                        Penguin.builder()
+                                .taxonKey("2481663")
+                                .acceptedScientificName("Pygoscelis adeliae (Hombron & Jacquinot  1841)")
+                                .species("Pygoscelis adeliae")
+                                .scientificName("Pygoscelis adeliae (Hombron & Jacquinot  1841)")
+                                .numberOfOccurrences(13)
+                                .build()
+                );
+        when(repository.findById("2481663"))
+                .thenReturn(expected);
+
+        Optional<Penguin> actual = service.findPenguin("2481663");
 
         assertThat(expected).isEqualTo(actual);
     }
