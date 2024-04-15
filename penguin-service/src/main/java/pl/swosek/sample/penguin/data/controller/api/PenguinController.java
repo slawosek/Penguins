@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.swosek.sample.penguin.data.controller.dto.GetPenguinResponse;
 import pl.swosek.sample.penguin.data.controller.dto.GetPenguinsResponse;
