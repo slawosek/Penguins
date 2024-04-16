@@ -11,7 +11,7 @@ export interface Penguin {
   /**
    * Scientific name.
    */
-  scientificName: string ;
+  scientificName: string;
 
   /**
    * Number of occurrences.
