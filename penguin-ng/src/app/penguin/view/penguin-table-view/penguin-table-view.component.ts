@@ -3,7 +3,6 @@ import { PenguinService } from "../../service/penguin.service";
 import { Observable } from "rxjs";
 import { Penguins } from "../../model/penguins";
 import { PenguinTableColumns } from "../model/penguin-table-columns";
-import { Penguin } from "../../model/penguin";
 
 @Component({
   selector: 'app-penguin-table-view',
