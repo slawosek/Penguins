@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { map } from "rxjs";
 import { PenguinForm } from "../form/penguin-form.types";
 import { PenguinFormService } from "../form/penguin-form.service";
+import { ToNewPenguinFunction } from "../model/function/to-new-penguin-function";
 
 /**
  * Penguin form component.
@@ -51,13 +52,9 @@ export class PenguinFormComponent implements OnInit {
    * On submit operations.
    */
   onSubmit() {
+    let requestFunction = new ToNewPenguinFunction();
     this.service.putPenguin(
-      {
-        scientificName: this.form.controls.scientificName.getRawValue(),
-        numberOfOccurrences: this.form.controls.numberOfOccurrences.getRawValue(),
-        acceptedScientificName: this.form.controls.acceptedScientificName.getRawValue(),
-        species: this.form.controls.species.getRawValue()
-      },
+      requestFunction.apply(this.form.getRawValue()),
       this.form.controls.taxonKey.getRawValue()
     ).subscribe({
       next: () => this.router.navigate(['penguin/table']),
