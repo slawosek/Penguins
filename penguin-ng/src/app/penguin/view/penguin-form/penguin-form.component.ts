@@ -16,7 +16,7 @@ export class PenguinFormComponent implements OnInit {
    * Form.
    */
   form: PenguinForm = new FormGroup({
-    taxonKey: new FormControl('', {
+    taxonKey: new FormControl('',{
       validators: [Validators.required],
       nonNullable: true
     }),

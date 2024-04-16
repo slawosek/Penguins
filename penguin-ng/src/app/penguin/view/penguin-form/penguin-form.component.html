@@ -6,10 +6,11 @@
         (ngSubmit)="onSubmit()" data-cy="form">
 
     <fieldset class="form__group">
-      <legend>Przyczyna</legend>
+      <legend>Taxon key</legend>
       <mat-form-field class="form__content">
         <mat-label>Taxon key</mat-label>
         <input matInput
+               readonly
                [formControl]="form.controls.taxonKey"
                [placeholder]="'56799'">
         <mat-error *ngIf="form.controls.taxonKey.hasError('required')">
@@ -30,7 +31,7 @@
       </mat-form-field>
     </fieldset>
     <fieldset class="form__group">
-      <legend>Scientific name</legend>
+      <legend>Number of occurrences</legend>
       <mat-form-field class="form__content">
         <mat-label>Number of occurrences</mat-label>
         <input matInput
