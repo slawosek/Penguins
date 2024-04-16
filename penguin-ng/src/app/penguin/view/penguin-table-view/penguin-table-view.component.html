@@ -23,7 +23,7 @@
       <ng-container cdkColumnDef="actions">
         <th cdk-header-cell *cdkHeaderCellDef>Actions</th>
         <td cdk-cell *cdkCellDef="let penguin">
-          <button mat-raised-button class="table__button" (click)="editPenguin(penguin)">Edit</button>
+          <button mat-raised-button class="table__button" routerLink="/penguin/{{penguin.taxonKey}}">Edit</button>
         </td>
       </ng-container>
 

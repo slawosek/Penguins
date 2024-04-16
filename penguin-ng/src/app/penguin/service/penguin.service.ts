@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Penguins } from "../model/penguins";
+import { Penguin } from "../model/penguin";
 
 /**
  * Service responsible for managing penguins.
@@ -20,7 +21,11 @@ export class PenguinService {
    * Fetches all penguins
    */
   getPenguins(): Observable<Penguins> {
-    return this.httpClient.get<Penguins>('/api/penguins');
+    return this.httpClient.get<Penguins>(`/api/penguins`);
+  }
+
+  getPenguin(taxonKey: string): Observable<Penguin> {
+    return this.httpClient.get<Penguin>(`api/penguin/${taxonKey}`)
   }
 
 }

@@ -1,0 +1,77 @@
+<article class="article">
+  <header class="header article__header">
+    <h2 class="header__h2">Penguin form</h2>
+  </header>
+  <form *ngIf="form" class="form" [formGroup]="form"
+        (ngSubmit)="onSubmit()" data-cy="form">
+
+    <fieldset class="form__group">
+      <legend>Przyczyna</legend>
+      <mat-form-field class="form__content">
+        <mat-label>Taxon key</mat-label>
+        <input matInput
+               [formControl]="form.controls.taxonKey"
+               [placeholder]="'56799'">
+        <mat-error *ngIf="form.controls.taxonKey.hasError('required')">
+          Value is required.
+        </mat-error>
+      </mat-form-field>
+    </fieldset>
+    <fieldset class="form__group">
+      <legend>Scientific name</legend>
+      <mat-form-field class="form__content">
+        <mat-label>Scientific name</mat-label>
+        <input matInput
+               [formControl]="form.controls.scientificName"
+               [placeholder]="'Aptenodytes patagonicus J.F.Miller 1778'">
+        <mat-error *ngIf="form.controls.scientificName.hasError('required')">
+          Value is required.
+        </mat-error>
+      </mat-form-field>
+    </fieldset>
+    <fieldset class="form__group">
+      <legend>Scientific name</legend>
+      <mat-form-field class="form__content">
+        <mat-label>Number of occurrences</mat-label>
+        <input matInput
+               [formControl]="form.controls.numberOfOccurrences"
+               [placeholder]="'12101'">
+        <mat-error *ngIf="form.controls.numberOfOccurrences.hasError('required')">
+          Value is required.
+        </mat-error>
+      </mat-form-field>
+    </fieldset>
+    <fieldset class="form__group">
+      <legend>Accepted scientific name</legend>
+      <mat-form-field class="form__content">
+        <mat-label>Accepted scientific name</mat-label>
+        <input matInput
+               [formControl]="form.controls.acceptedScientificName"
+               [placeholder]="'Aptenodytes patagonicus J.F.Miller 1778'">
+        <mat-error *ngIf="form.controls.acceptedScientificName.hasError('required')">
+          Value is required.
+        </mat-error>
+      </mat-form-field>
+    </fieldset>
+    <fieldset class="form__group">
+      <legend>Species</legend>
+      <mat-form-field class="form__content">
+        <mat-label>Species</mat-label>
+        <input matInput
+               [formControl]="form.controls.species"
+               [placeholder]="'Aptenodytes patagonicus'">
+        <mat-error *ngIf="form.controls.species.hasError('required')">
+          Value is required.
+        </mat-error>
+      </mat-form-field>
+    </fieldset>
+
+    <div class="form__group--horizontal--no-border">
+      <button mat-button type="submit" color="primary" data-cy="submitButton">Send</button>
+      <button mat-button color="warn" data-cy="clearButton" (click)="form.reset()">Reset</button>
+    </div>
+    <mat-error *ngIf="form.invalid && form.dirty" data-cy="invalidFormMessage">
+      Form is invalid.
+    </mat-error>
+  </form>
+</article>

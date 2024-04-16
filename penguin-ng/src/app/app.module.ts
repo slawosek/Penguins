@@ -16,21 +16,29 @@ import { MatListModule } from '@angular/material/list';
 import { CdkTableModule } from "@angular/cdk/table";
 import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
 import { AboutComponent } from './info/view/about/about.component';
+import { PenguinFormComponent } from './penguin/view/penguin-form/penguin-form.component';
+import { MatError, MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 /**
  * Application main module.
  */
 @NgModule({
   declarations: [
+    AboutComponent,
     AppComponent,
     MainComponent,
     MainNavigationComponent,
-    PenguinTableViewComponent,
-    AboutComponent
+    PenguinFormComponent,
+    PenguinTableViewComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    CdkTableModule,
     HttpClientModule,
     MatTableModule,
     MatButtonModule,
@@ -38,14 +46,17 @@ import { AboutComponent } from './info/view/about/about.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    CdkTableModule,
+    MatError,
     MatMenu,
     MatMenuItem,
-    MatMenuTrigger
+    MatMenuTrigger,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    ReactiveFormsModule
   ],
-  providers: [
-
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
