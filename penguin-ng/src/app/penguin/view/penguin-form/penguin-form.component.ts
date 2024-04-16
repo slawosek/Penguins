@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { PenguinService } from "../../service/penguin.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { map } from "rxjs";
 import { PenguinForm } from "../form/penguin-form.types";
+import { PenguinFormService } from "../form/penguin-form.service";
 
+/**
+ * Penguin form component.
+ */
 @Component({
   selector: 'app-penguin-form',
   templateUrl: './penguin-form.component.html',
@@ -15,37 +18,20 @@ export class PenguinFormComponent implements OnInit {
   /**
    * Form.
    */
-  form: PenguinForm = new FormGroup({
-    taxonKey: new FormControl('',{
-      validators: [Validators.required],
-      nonNullable: true
-    }),
-    scientificName: new FormControl('', {
-      validators: [Validators.required],
-      nonNullable: true
-    }),
-    numberOfOccurrences: new FormControl(1, {
-      validators: [Validators.required, Validators.min(1)],
-      nonNullable: true
-    }),
-    acceptedScientificName: new FormControl('', {
-      validators: [Validators.required],
-      nonNullable: true
-    }),
-    species: new FormControl('', {
-      validators: [Validators.required],
-      nonNullable: true
-    })
-  });
+  form!: PenguinForm;
 
   /**
    * @param service penguin service
    * @param route current route
    * @param router router service
+   * @param formService form service
    */
-  constructor(private service: PenguinService,
-              private route: ActivatedRoute,
-              private router: Router) {
+  constructor(
+    private service: PenguinService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private formService: PenguinFormService
+  ) {
   }
 
   /**
@@ -56,7 +42,7 @@ export class PenguinFormComponent implements OnInit {
       .pipe(map((params) => params['taxonKey']))
       .subscribe((taxonKey) => {
         this.service.getPenguin(taxonKey).subscribe(penguin => {
-          this.form.patchValue(penguin);
+          this.form = this.formService.createForm(penguin);
         });
       });
   }
@@ -65,7 +51,18 @@ export class PenguinFormComponent implements OnInit {
    * On submit operations.
    */
   onSubmit() {
-
+    this.service.putPenguin(
+      {
+        scientificName: this.form.controls.scientificName.getRawValue(),
+        numberOfOccurrences: this.form.controls.numberOfOccurrences.getRawValue(),
+        acceptedScientificName: this.form.controls.acceptedScientificName.getRawValue(),
+        species: this.form.controls.species.getRawValue()
+      },
+      this.form.controls.taxonKey.getRawValue()
+    ).subscribe({
+      next: () => this.router.navigate(['penguin/table']),
+      error: () => alert('Penguin was NOT saved!')
+    })
   }
 
 }

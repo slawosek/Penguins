@@ -1,0 +1,30 @@
+.form__button {
+  background-color: #007e68;
+  color: #ffffff;
+  border-color: black;
+}
+
+.form__button:hover {
+  text-decoration: underline;
+}
+
+.form__group--horizontal--no-border {
+  display: flex;
+  flex-direction: row;
+  max-width: 40rem;
+  margin: 1rem 0;
+  padding: 0.65rem;
+  gap: 1rem;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  gap: 0.5rem;
+  border-color: rgba(0, 0, 0, 0.42);
+  border-width: 0.0625rem;
+  border-radius: 0.25rem;
+  padding: 0.65rem;
+  margin: 1rem 0;
+}

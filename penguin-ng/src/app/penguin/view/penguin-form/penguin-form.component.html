@@ -68,10 +68,10 @@
     </fieldset>
 
     <div class="form__group--horizontal--no-border">
-      <button mat-button type="submit" color="primary" data-cy="submitButton">Send</button>
-      <button mat-button color="warn" data-cy="clearButton" (click)="form.reset()">Reset</button>
+      <button mat-button class="form__button" type="submit" color="primary" data-cy="submitButton">Send</button>
+      <button mat-button class="form__button" data-cy="clearButton" (click)="form.reset()">Reset</button>
     </div>
-    <mat-error *ngIf="form.invalid && form.dirty" data-cy="invalidFormMessage">
+    <mat-error style="color: red" *ngIf="form.invalid && form.dirty" data-cy="invalidFormMessage">
       Form is invalid.
     </mat-error>
   </form>

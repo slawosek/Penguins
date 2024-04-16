@@ -1,9 +1,21 @@
-GET http://localhost:8080/api/penguin/2481663
-Accept: application/json
-
-###
 ### Fetch penguins species and occurences
+
 GET http://localhost:8080/api/penguins
 Accept: application/json
 
-###
+### Get single penguin species info
+
+GET http://localhost:8080/api/penguin/2481643
+Accept: application/json
+
+### PUT single event
+
+PUT localhost:8080/api/penguin/2481643
+Content-Type: application/json
+
+{
+  "scientificName": "Smartus penguinus",
+  "numberOfOccurrences": 150,
+  "acceptedScientificName": "Eudyptes chrysolophus (Brandt  1837)",
+  "species": "Eudyptes chrysolophus"
+}

@@ -7,8 +7,10 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.swosek.sample.penguin.data.controller.api.PenguinController;
 import pl.swosek.sample.penguin.data.controller.dto.GetPenguinResponse;
 import pl.swosek.sample.penguin.data.controller.dto.GetPenguinsResponse;
+import pl.swosek.sample.penguin.data.controller.dto.PutPenguinRequest;
 import pl.swosek.sample.penguin.data.controller.function.PenguinToResponseFunction;
 import pl.swosek.sample.penguin.data.controller.function.PenguinsToResponseFunction;
+import pl.swosek.sample.penguin.data.controller.function.RequestToPenguinFunction;
 import pl.swosek.sample.penguin.data.service.api.PenguinService;
 
 /**
@@ -22,16 +24,20 @@ public class PenguinDefaultController implements PenguinController {
 
     private final PenguinToResponseFunction penguinToResponseFunction;
 
+    private final RequestToPenguinFunction requestToPenguinFunction;
+
     private final PenguinService service;
 
     @Autowired
     public PenguinDefaultController(
             PenguinsToResponseFunction penguinsToResponseFunction,
             PenguinToResponseFunction penguinToResponseFunction,
+            RequestToPenguinFunction requestToPenguinFunction,
             PenguinService service
     ) {
         this.penguinsToResponseFunction = penguinsToResponseFunction;
         this.penguinToResponseFunction = penguinToResponseFunction;
+        this.requestToPenguinFunction = requestToPenguinFunction;
         this.service = service;
     }
 
@@ -49,6 +55,14 @@ public class PenguinDefaultController implements PenguinController {
         return service.findPenguin(taxonKey)
                 .map(penguinToResponseFunction)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @Override
+    public void putPenguin(String taxonKey, PutPenguinRequest request) {
+        boolean updated = service.updatePenguin(requestToPenguinFunction.apply(taxonKey, request));
+        if (!updated) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
 }

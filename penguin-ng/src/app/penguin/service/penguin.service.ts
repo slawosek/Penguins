@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Penguins } from "../model/penguins";
 import { Penguin } from "../model/penguin";
+import { NewPenguin } from "../model/new-penguin";
 
 /**
  * Service responsible for managing penguins.
@@ -24,8 +25,23 @@ export class PenguinService {
     return this.httpClient.get<Penguins>(`/api/penguins`);
   }
 
+  /**
+   * Fetches penguin with given taxon key.
+   *
+   * @param taxonKey taxon key
+   */
   getPenguin(taxonKey: string): Observable<Penguin> {
     return this.httpClient.get<Penguin>(`api/penguin/${taxonKey}`)
+  }
+
+  /**
+   * Send request to apply changes to given penguin.
+   *
+   * @param penguin penguin changes
+   * @param taxonKey taxon key
+   */
+  putPenguin(penguin: NewPenguin, taxonKey: string): Observable<any> {
+    return this.httpClient.put<NewPenguin>(`api/penguin/${taxonKey}`, penguin);
   }
 
 }

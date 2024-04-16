@@ -20,4 +20,6 @@ public interface PenguinService {
      */
     Optional<Penguin> findPenguin(String taxonKey);
 
+    boolean updatePenguin(Penguin penguin);
+
 }
