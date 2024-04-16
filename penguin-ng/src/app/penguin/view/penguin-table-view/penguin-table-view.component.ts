@@ -28,7 +28,4 @@ export class PenguinTableViewComponent {
   constructor(private service: PenguinService) {
   }
 
-  editPenguin(penguin: Penguin) {
-      console.log('Taxon key: ' + penguin.taxonKey);
-  }
 }
