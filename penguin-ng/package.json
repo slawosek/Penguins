@@ -6,6 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "watch-production": "ng build --configuration production --watch",
+    "http-server": "http-server -p 4550 -c-1 -P http://localhost:4550? -a localhost dist/space-app/browser",
     "test": "ng test"
   },
   "private": true,
@@ -19,6 +21,7 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "@angular/service-worker": "^17.3.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
