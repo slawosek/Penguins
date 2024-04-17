@@ -8,7 +8,10 @@
     "watch": "ng build --watch --configuration development",
     "watch-production": "ng build --configuration production --watch",
     "http-server": "http-server -p 4550 -c-1 -P http://localhost:4550? -a localhost dist/space-app/browser",
-    "test": "ng test"
+    "test": "ng test --no-watch --browsers=ChromeHeadless",
+    "test-watch": "ng test --browsers=Chrome --reporters=kjhtml",
+    "e2e": "ng e2e --headless --watch false",
+    "e2e-watch": "ng e2e"
   },
   "private": true,
   "dependencies": {
