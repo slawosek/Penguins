@@ -1,12 +1,25 @@
 import { TestBed } from '@angular/core/testing';
 
 import { PenguinService } from './penguin.service';
+import { HttpClient } from "@angular/common/http";
+import { instance, mock } from "@typestrong/ts-mockito";
 
 describe('PenguinService', () => {
   let service: PenguinService;
+  let http: HttpClient;
+
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    http = mock(HttpClient);
+
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: HttpClient,
+          useValue: instance(http)
+        }
+      ]
+    });
     service = TestBed.inject(PenguinService);
   });
 
