@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  penguin_ng:
+    image: swosek/penguin-ng:0.0.1
+    restart: always
+    environment:
+      PENGUIN_API_URL: "${API_URL}"
+    ports:
+      - "4200:80"
+
