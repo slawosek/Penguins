@@ -8,7 +8,7 @@ Accept: application/json
 GET http://localhost:8080/api/penguin/2481643
 Accept: application/json
 
-### PUT single event
+### PUT single penguin change
 
 PUT localhost:8080/api/penguin/2481643
 Content-Type: application/json
