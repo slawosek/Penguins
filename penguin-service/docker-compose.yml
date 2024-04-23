@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  penguin_service:
+    image: swosek/penguin-service:0.0.1
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgresql:5432/${DB_NAME}"
+      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
+      SPRING_DATASOURCE_USERNAME: "${DB_USER}"
+      SPRING_DATASOURCE_PASSWORD: "${DB_PASSWORD}"
+      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
+    ports:
+      - "8080:8080"
+
+  postgresql:
+    image: postgres:15.2-alpine3.17
+    restart: always
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: "${DB_NAME}"
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgresql_data: {}
