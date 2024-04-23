@@ -6,12 +6,12 @@
     <changeSet id="1" author="slawosek">
 
         <createTable tableName="penguins">
-            <column name="taxonKey" type="VARCHAR(1024)">
+            <column name="taxon_key" type="VARCHAR(1024)">
                 <constraints primaryKey="true" primaryKeyName="penguins__PK"/>
             </column>
-            <column name="scientificName" type="VARCHAR(1024)"/>
-            <column name="numberOfOccurrences" type="VARCHAR(1024)"/>
-            <column name="acceptedScientificName" type="VARCHAR(1024)"/>
+            <column name="scientific_name" type="VARCHAR(1024)"/>
+            <column name="number_of_occurrences" type="VARCHAR(1024)"/>
+            <column name="accepted_scientific_name" type="VARCHAR(1024)"/>
             <column name="species" type="VARCHAR(1024)"/>
         </createTable>
 
