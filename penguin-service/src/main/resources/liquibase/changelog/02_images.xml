@@ -1,0 +1,30 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="2" author="slawosek">
+
+        <createTable tableName="penguin_images">
+            <column name="uuid" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="penguin_images__PK"/>
+            </column>
+            <column name="filename" type="VARCHAR(512)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mime_type" type="VARCHAR(512)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bytes" type="blob">
+                <constraints nullable="false"/>
+            </column>
+            <column name="penguin_taxon_key" type="VARCHAR(512)">
+                <constraints foreignKeyName="penguin_images__penguins__FK"
+                             referencedTableName="penguins"
+                             referencedColumnNames="taxon_key"
+                             nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

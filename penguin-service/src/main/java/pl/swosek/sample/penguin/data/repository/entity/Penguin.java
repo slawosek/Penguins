@@ -2,6 +2,9 @@ package pl.swosek.sample.penguin.data.repository.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedAttributeNode;
+import jakarta.persistence.NamedEntityGraph;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -11,6 +14,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
 
 /**
  * Penguin entity.
@@ -24,7 +29,23 @@ import lombok.ToString;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
+@NamedEntityGraph(
+        name = Penguin.EntityGraphs.WITH_IMAGES,
+        attributeNodes = @NamedAttributeNode(Penguin_.IMAGES)
+)
 public class Penguin {
+
+    /**
+     * Entity graph.
+     */
+    public static final class EntityGraphs {
+
+        /**
+         * Entity with attachments.
+         */
+        public static final String WITH_IMAGES = "Penguin.images";
+
+    }
 
     /**
      * Taxon key.
@@ -51,6 +72,14 @@ public class Penguin {
      * Species.
      */
     private String species;
+
+    /**
+     * Attachments.
+     */
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "penguin")
+    private List<PenguinImage> images;
 
 
 }
