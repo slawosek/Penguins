@@ -21,16 +21,16 @@ import java.util.logging.Level;
 @Log
 public class PenguinMediaDefaultController implements PenguinMediaController {
 
-    private final PenguinMediaService penguinMediaService;
+    private final PenguinMediaService service;
 
     @Autowired
-    public PenguinMediaDefaultController(PenguinMediaService penguinMediaService) {
-        this.penguinMediaService = penguinMediaService;
+    public PenguinMediaDefaultController(PenguinMediaService service) {
+        this.service = service;
     }
 
     @Override
     public ResponseEntity<byte[]> getPenguinImage(String taxonKey) {
-        Optional<PenguinMedia> penguinImage = penguinMediaService.findByPenguinTaxonKey(taxonKey);
+        Optional<PenguinMedia> penguinImage = service.findByPenguinTaxonKey(taxonKey);
         log.log(Level.WARNING, penguinImage.get().getFilename());
         return ResponseEntity.ok()
                 .contentType(penguinImage.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)).getMimeType())
@@ -40,7 +40,7 @@ public class PenguinMediaDefaultController implements PenguinMediaController {
     }
 
     public List<String> getPenguinImages() {
-        return penguinMediaService.findAll().stream().map(PenguinMedia::getFilename).toList();
+        return service.findAll().stream().map(PenguinMedia::getFilename).toList();
     }
 
 }

@@ -29,23 +29,7 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-@NamedEntityGraph(
-        name = Penguin.EntityGraphs.WITH_MEDIAS,
-        attributeNodes = @NamedAttributeNode(Penguin_.MEDIAS)
-)
 public class Penguin {
-
-    /**
-     * Entity graph.
-     */
-    public static final class EntityGraphs {
-
-        /**
-         * Entity with attachments.
-         */
-        public static final String WITH_MEDIAS = "Penguin.medias";
-
-    }
 
     /**
      * Taxon key.

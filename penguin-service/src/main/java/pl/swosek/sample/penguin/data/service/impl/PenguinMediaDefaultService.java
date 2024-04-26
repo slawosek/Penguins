@@ -17,15 +17,9 @@ public class PenguinMediaDefaultService implements PenguinMediaService {
 
     private final MediaRepository mediaRepository;
 
-    private final PenguinRepository penguinRepository;
-
     @Autowired
-    public PenguinMediaDefaultService(
-            MediaRepository imageRepository,
-            PenguinRepository penguinRepository
-    ) {
+    public PenguinMediaDefaultService(MediaRepository imageRepository) {
         this.mediaRepository = imageRepository;
-        this.penguinRepository = penguinRepository;
     }
 
     @Override
