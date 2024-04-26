@@ -4,7 +4,6 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.swosek.sample.penguin.data.repository.api.MediaRepository;
-import pl.swosek.sample.penguin.data.repository.api.PenguinRepository;
 import pl.swosek.sample.penguin.data.repository.entity.PenguinMedia;
 import pl.swosek.sample.penguin.data.service.api.PenguinMediaService;
 
