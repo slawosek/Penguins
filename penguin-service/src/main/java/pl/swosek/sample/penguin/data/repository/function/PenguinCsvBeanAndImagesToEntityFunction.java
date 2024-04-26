@@ -22,7 +22,10 @@ public class PenguinCsvBeanAndImagesToEntityFunction implements BiFunction<Pengu
                 .species(penguinCsvBean.getSpecies())
                 .acceptedScientificName(penguinCsvBean.getAcceptedScientificName())
                 .numberOfOccurrences(penguinCsvBean.getNumberOfOccurrences())
-                .images(images == null ? List.of() : images)
+                .images(images == null ? List.of() : images.stream()
+                        .filter(image -> image.getFilename().contains(penguinCsvBean.getTaxonKey()))
+                        .toList()
+                )
                 .build();
     }
 
