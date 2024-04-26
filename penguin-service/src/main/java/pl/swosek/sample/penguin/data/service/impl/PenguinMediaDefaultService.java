@@ -1,7 +1,7 @@
 package pl.swosek.sample.penguin.data.service.impl;
 
-import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import pl.swosek.sample.penguin.data.repository.api.MediaRepository;
 import pl.swosek.sample.penguin.data.repository.entity.PenguinMedia;
@@ -10,8 +10,9 @@ import pl.swosek.sample.penguin.data.service.api.PenguinMediaService;
 import java.util.List;
 import java.util.Optional;
 
+import static pl.swosek.sample.penguin.utility.Utility.distinctBy;
+
 @Service
-@Log
 public class PenguinMediaDefaultService implements PenguinMediaService {
 
     private final MediaRepository mediaRepository;
@@ -27,8 +28,19 @@ public class PenguinMediaDefaultService implements PenguinMediaService {
     }
 
     @Override
-    public List<PenguinMedia> findAll() {
-        return mediaRepository.findAll();
+    public List<PenguinMedia> findAllDistinctImages() {
+        return mediaRepository.findAllByMimeType(MediaType.IMAGE_JPEG).stream()
+                .filter(distinctBy(PenguinMedia::getPenguin))
+                .toList();
+    }
+
+    @Override
+    public Optional<PenguinMedia> findImageByPenguinTaxonKey(String penguinTaxonKey) {
+        Optional<PenguinMedia> image = mediaRepository.findFirstByPenguinTaxonKeyAndMimeType(penguinTaxonKey, MediaType.IMAGE_JPEG);
+        if (image.isEmpty()) {
+            return mediaRepository.findFirstByPenguinTaxonKeyAndMimeType(penguinTaxonKey, MediaType.IMAGE_PNG);
+        }
+        return image;
     }
 
 }

@@ -41,8 +41,7 @@ public interface PenguinMediaController {
             }
     )
     @GetMapping(
-            value = "/api/penguin/{taxonKey}/image",
-            produces = MediaType.APPLICATION_JSON_VALUE
+            value = "/api/penguin/{taxonKey}/image"
     )
     ResponseEntity<byte[]> getPenguinImage(
             @Parameter(
@@ -52,6 +51,25 @@ public interface PenguinMediaController {
             @PathVariable String taxonKey
     );
 
+    /**
+     * @return penguin images filenames
+     */
+    @Operation(
+            summary = "Get penguin images Uuids.",
+            description = "Provides penguin images Uuids of each penguin."
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Penguin images Uuids representation."
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Penguin images not found."
+                    ),
+            }
+    )
     @GetMapping(
             value = "/api/images",
             produces = MediaType.APPLICATION_JSON_VALUE

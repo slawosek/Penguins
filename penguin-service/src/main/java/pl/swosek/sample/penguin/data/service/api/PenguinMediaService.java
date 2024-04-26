@@ -12,6 +12,8 @@ public interface PenguinMediaService {
 
     Optional<PenguinMedia> findByPenguinTaxonKey(String penguinTaxonKey);
 
-    List<PenguinMedia> findAll();
+    List<PenguinMedia> findAllDistinctImages();
+
+    Optional<PenguinMedia> findImageByPenguinTaxonKey(String penguinTaxonKey);
 
 }

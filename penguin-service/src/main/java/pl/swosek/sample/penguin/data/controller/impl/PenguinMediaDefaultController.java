@@ -27,7 +27,7 @@ public class PenguinMediaDefaultController implements PenguinMediaController {
 
     @Override
     public ResponseEntity<byte[]> getPenguinImage(String taxonKey) {
-        Optional<PenguinMedia> penguinImage = service.findByPenguinTaxonKey(taxonKey);
+        Optional<PenguinMedia> penguinImage = service.findImageByPenguinTaxonKey(taxonKey);
         return ResponseEntity.ok()
                 .contentType(penguinImage.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)).getMimeType())
                 .body(penguinImage
@@ -35,8 +35,9 @@ public class PenguinMediaDefaultController implements PenguinMediaController {
                         .getBytes());
     }
 
+    @Override
     public List<String> getPenguinImages() {
-        return service.findAll().stream().map(PenguinMedia::getFilename).toList();
+        return service.findAllDistinctImages().stream().map(PenguinMedia::getFilename).toList();
     }
 
 }
