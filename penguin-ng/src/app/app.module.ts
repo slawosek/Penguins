@@ -23,7 +23,9 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { PenguinMediaSelectionComponent } from './penguin/view/penguin-media/penguin-media-selection.component';
-import { PenguinImageComponent } from './penguin/view/component/penguin-image/penguin-image.component';
+import { PenguinImageComponent } from './penguin/component/penguin-image/penguin-image.component';
+import { NgOptimizedImage } from "@angular/common";
+import { PenguinMediaDisplayComponent } from './penguin/view/penguin-media-display/penguin-media-display.component';
 
 /**
  * Application main module.
@@ -37,35 +39,37 @@ import { PenguinImageComponent } from './penguin/view/component/penguin-image/pe
     PenguinFormComponent,
     PenguinImageComponent,
     PenguinMediaSelectionComponent,
-    PenguinTableViewComponent
+    PenguinTableViewComponent,
+    PenguinMediaDisplayComponent
   ],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    CdkTableModule,
-    HttpClientModule,
-    MatTableModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatError,
-    MatMenu,
-    MatMenuItem,
-    MatMenuTrigger,
-    MatFormField,
-    MatInput,
-    MatLabel,
-    ReactiveFormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    })
-  ],
+    imports: [
+        AppRoutingModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        CdkTableModule,
+        HttpClientModule,
+        MatTableModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        MatError,
+        MatMenu,
+        MatMenuItem,
+        MatMenuTrigger,
+        MatFormField,
+        MatInput,
+        MatLabel,
+        ReactiveFormsModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
+        NgOptimizedImage
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

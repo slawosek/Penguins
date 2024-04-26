@@ -1,0 +1,12 @@
+.record__image {
+  display: block;
+  position: relative;
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 4px;
+}
+
+.record__image:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}

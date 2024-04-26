@@ -43,4 +43,11 @@ public class PenguinMediaDefaultService implements PenguinMediaService {
         return image;
     }
 
+    @Override
+    public Optional<PenguinMedia> findVideoByPenguinTaxonKey(String penguinTaxonKey) {
+        return mediaRepository.findAllByPenguinTaxonKey(penguinTaxonKey).stream()
+                .filter(media -> media.getMimeType().equals(MediaType.APPLICATION_PROBLEM_JSON))
+                .findFirst();
+    }
+
 }

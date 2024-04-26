@@ -1,3 +1,8 @@
+### Fetch video
+
+GET http://localhost:8080/api/penguin/2481643/video
+Accept: application/json
+
 ### Fetch all filenames
 
 GET http://localhost:8080/api/images

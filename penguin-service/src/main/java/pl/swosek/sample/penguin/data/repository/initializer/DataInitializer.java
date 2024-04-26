@@ -11,9 +11,10 @@ import pl.swosek.sample.penguin.data.repository.entity.Penguin;
 import pl.swosek.sample.penguin.data.repository.entity.PenguinMedia;
 import pl.swosek.sample.penguin.data.repository.function.PenguinsCsvBeanAndMediaToEntityFunction;
 import pl.swosek.sample.penguin.data.repository.function.ResourceMediasToEntityFunction;
-import pl.swosek.sample.penguin.image.loader.ImageResourceLoader;
+import pl.swosek.sample.penguin.image.loader.MediaResourceLoader;
 
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * Penguin data initializer.
@@ -40,7 +41,7 @@ public class DataInitializer implements InitializingBean {
     /**
      * Image resource loader.
      */
-    private final ImageResourceLoader imageResourceLoader;
+    private final MediaResourceLoader mediaResourceLoader;
 
     private final ResourceMediasToEntityFunction resourceMediasToEntityFunction;
 
@@ -51,13 +52,13 @@ public class DataInitializer implements InitializingBean {
             PenguinRepository penguinRepository,
             ReaderImplementation readerImplementation,
             PenguinsCsvBeanAndMediaToEntityFunction penguinsCsvBeanToEntityFunction,
-            ImageResourceLoader imageResourceLoader,
+            MediaResourceLoader mediaResourceLoader,
             ResourceMediasToEntityFunction resourceMediasToEntityFunction, MediaRepository mediaRepository
     ) {
         this.penguinRepository = penguinRepository;
         this.readerImplementation = readerImplementation;
         this.penguinsCsvBeanToEntityFunction = penguinsCsvBeanToEntityFunction;
-        this.imageResourceLoader = imageResourceLoader;
+        this.mediaResourceLoader = mediaResourceLoader;
         this.resourceMediasToEntityFunction = resourceMediasToEntityFunction;
         this.mediaRepository = mediaRepository;
     }
@@ -65,9 +66,10 @@ public class DataInitializer implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         if (penguinRepository.count() == 0) {
-            List<PenguinMedia> penguinMedia = resourceMediasToEntityFunction.apply(imageResourceLoader.loadImageResources());
+            List<PenguinMedia> penguinMedia = resourceMediasToEntityFunction.apply(mediaResourceLoader.loadMediaResources());
+            log.log(Level.WARNING, penguinMedia.get(0).getFilename());
             List<Penguin> penguins = penguinsCsvBeanToEntityFunction.apply(readerImplementation.readDataFromCsv(), penguinMedia);
-            penguins.forEach(penguin -> penguin.getMedias().forEach(image -> image.setPenguin(penguin)));
+            penguins.forEach(penguin -> penguin.getMedias().forEach(media -> media.setPenguin(penguin)));
             penguinRepository.saveAll(penguins);
             mediaRepository.saveAll(penguinMedia);
         }

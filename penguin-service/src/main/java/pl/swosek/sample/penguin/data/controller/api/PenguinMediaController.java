@@ -10,8 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import pl.swosek.sample.penguin.data.controller.dto.GetPenguinImagesInfo;
-
-import java.util.List;
+import pl.swosek.sample.penguin.data.controller.dto.GetPenguinVideoInfo;
 
 /**
  * Controller for managing penguin images.
@@ -77,6 +76,64 @@ public interface PenguinMediaController {
     )
     GetPenguinImagesInfo getPenguinImages();
 
+    /**
+     * @return penguin video
+     */
+    @Operation(
+            summary = "Get penguin video.",
+            description = "Provides penguin video representation."
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Penguin video representation."
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Penguin video not found."
+                    ),
+            }
+    )
+    @GetMapping(
+            value = "/api/penguin/{taxonKey}/video"
+    )
+    ResponseEntity<byte[]> getPenguinVideo(
+            @Parameter(
+                    description = "Taxon key.",
+                    example = "63128"
+            )
+            @PathVariable String taxonKey
+    );
 
+    /**
+     * @return penguin video
+     */
+    @Operation(
+            summary = "Get penguin video info.",
+            description = "Provides penguin video info representation."
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Penguin video info representation."
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Penguin video info not found."
+                    ),
+            }
+    )
+    @GetMapping(
+            value = "/api/penguin/{taxonKey}/video/info"
+    )
+    GetPenguinVideoInfo getPenguinVideoInfo(
+            @Parameter(
+                    description = "Taxon key.",
+                    example = "63128"
+            )
+            @PathVariable String taxonKey
+    );
 
 }

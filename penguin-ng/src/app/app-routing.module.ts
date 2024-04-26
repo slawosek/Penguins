@@ -4,6 +4,7 @@ import { PenguinTableViewComponent } from "./penguin/view/penguin-table-view/pen
 import { AboutComponent } from "./info/view/about/about.component";
 import { PenguinFormComponent } from "./penguin/view/penguin-form/penguin-form.component";
 import { PenguinMediaSelectionComponent } from "./penguin/view/penguin-media/penguin-media-selection.component";
+import { PenguinMediaDisplayComponent } from "./penguin/view/penguin-media-display/penguin-media-display.component";
 
 /**
  * Global navigation routes.
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'penguin/media',
     component: PenguinMediaSelectionComponent
+  },
+  {
+    path: 'penguin/mediaPlayer/:taxonKey',
+    component: PenguinMediaDisplayComponent
   },
   {
     path: 'penguin/:taxonKey',

@@ -1,3 +1,14 @@
-<li *ngFor="let info of imagesInfo">
-  {{info.filename}}
-</li>
+<article>
+  <header class="header article__header">
+    <h2 class="header__h2">Penguin movies</h2>
+  </header>
+  <p>
+    Select image with given penguin to search for films with him.
+  </p>
+  <div class="container__image">
+    <a *ngFor="let info of imagesInfo">
+      <app-penguin-image [imageInfo]="info"></app-penguin-image>
+    </a>
+  </div>
+</article>
+

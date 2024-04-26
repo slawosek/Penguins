@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.net.URI;
 import java.util.UUID;
 
 /**
@@ -33,6 +34,6 @@ public class GetPenguinImageInfo {
 
     private String penguinTaxonKey;
 
-
+    private URI source;
 
 }

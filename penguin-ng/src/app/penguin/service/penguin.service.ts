@@ -5,6 +5,7 @@ import { Penguins } from "../model/penguins";
 import { Penguin } from "../model/penguin";
 import { NewPenguin } from "../model/new-penguin";
 import { ImagesInfo } from "../model/images-info";
+import { VideoInfo } from "../model/video-info";
 
 /**
  * Service responsible for managing penguins.
@@ -46,7 +47,11 @@ export class PenguinService {
   }
 
   getImagesInfo(): Observable<ImagesInfo> {
-    return this.httpClient.get<ImagesInfo>('api/images');
+    return this.httpClient.get<ImagesInfo>(`api/images`);
+  }
+
+  getVideoInfo(taxonKey: string): Observable<VideoInfo> {
+    return this.httpClient.get<VideoInfo>(`api/penguin/${taxonKey}/video/info`);
   }
 
 }

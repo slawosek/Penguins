@@ -16,4 +16,6 @@ public interface PenguinMediaService {
 
     Optional<PenguinMedia> findImageByPenguinTaxonKey(String penguinTaxonKey);
 
+    Optional<PenguinMedia> findVideoByPenguinTaxonKey(String penguinTaxonKey);
+
 }

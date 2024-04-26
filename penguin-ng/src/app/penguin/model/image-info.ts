@@ -8,4 +8,6 @@ export interface ImageInfo {
 
   penguinSpecie: string;
 
+  source: string;
+
 }

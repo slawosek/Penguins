@@ -16,4 +16,5 @@ public interface MediaRepository extends JpaRepository<PenguinMedia, UUID> {
 
     List<PenguinMedia> findAllByMimeType(MediaType mimeType);
 
+    List<PenguinMedia> findAllByPenguinTaxonKey(String penguinTaxonKey);
 }
