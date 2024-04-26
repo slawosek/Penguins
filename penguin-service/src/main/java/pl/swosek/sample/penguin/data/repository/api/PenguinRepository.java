@@ -11,7 +11,7 @@ import java.util.Optional;
  */
 public interface PenguinRepository extends JpaRepository<Penguin, String> {
 
-    @EntityGraph(value = Penguin.EntityGraphs.WITH_IMAGES, type = EntityGraph.EntityGraphType.LOAD)
+    @EntityGraph(value = Penguin.EntityGraphs.WITH_MEDIAS, type = EntityGraph.EntityGraphType.LOAD)
     Optional<Penguin> findByTaxonKey(String taxonKey);
 
 }

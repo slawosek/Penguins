@@ -30,8 +30,8 @@ import java.util.List;
 @EqualsAndHashCode
 @ToString
 @NamedEntityGraph(
-        name = Penguin.EntityGraphs.WITH_IMAGES,
-        attributeNodes = @NamedAttributeNode(Penguin_.IMAGES)
+        name = Penguin.EntityGraphs.WITH_MEDIAS,
+        attributeNodes = @NamedAttributeNode(Penguin_.MEDIAS)
 )
 public class Penguin {
 
@@ -43,7 +43,7 @@ public class Penguin {
         /**
          * Entity with attachments.
          */
-        public static final String WITH_IMAGES = "Penguin.images";
+        public static final String WITH_MEDIAS = "Penguin.medias";
 
     }
 
@@ -79,7 +79,7 @@ public class Penguin {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "penguin")
-    private List<PenguinImage> images;
+    private List<PenguinMedia> medias;
 
 
 }

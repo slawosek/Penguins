@@ -1,6 +1,5 @@
 package pl.swosek.sample.penguin.data.repository.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,8 +8,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedAttributeNode;
-import jakarta.persistence.NamedEntityGraph;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -29,7 +26,7 @@ import java.util.UUID;
  * Image entity.
  */
 @Entity
-@Table(name = "penguin_images")
+@Table(name = "penguin_medias")
 @Getter
 @Setter
 @Builder
@@ -37,7 +34,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class PenguinImage {
+public class PenguinMedia {
 
     /**
      * Uuid.

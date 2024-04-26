@@ -3,7 +3,7 @@ package pl.swosek.sample.penguin.data.repository.function;
 import org.springframework.stereotype.Component;
 import pl.swosek.sample.penguin.csv.bean.PenguinCsvBean;
 import pl.swosek.sample.penguin.data.repository.entity.Penguin;
-import pl.swosek.sample.penguin.data.repository.entity.PenguinImage;
+import pl.swosek.sample.penguin.data.repository.entity.PenguinMedia;
 
 import java.util.List;
 import java.util.function.BiFunction;
@@ -12,18 +12,18 @@ import java.util.function.BiFunction;
  * Converts {@link PenguinCsvBean} to {@link Penguin}
  */
 @Component
-public class PenguinCsvBeanAndImagesToEntityFunction implements BiFunction<PenguinCsvBean, List<PenguinImage>, Penguin> {
+public class PenguinCsvBeanAndMediaToEntityFunction implements BiFunction<PenguinCsvBean, List<PenguinMedia>, Penguin> {
 
     @Override
-    public Penguin apply(PenguinCsvBean penguinCsvBean, List<PenguinImage> images) {
+    public Penguin apply(PenguinCsvBean penguinCsvBean, List<PenguinMedia> media) {
         return Penguin.builder()
                 .taxonKey(penguinCsvBean.getTaxonKey())
                 .scientificName(penguinCsvBean.getScientificName())
                 .species(penguinCsvBean.getSpecies())
                 .acceptedScientificName(penguinCsvBean.getAcceptedScientificName())
                 .numberOfOccurrences(penguinCsvBean.getNumberOfOccurrences())
-                .images(images == null ? List.of() : images.stream()
-                        .filter(image -> image.getFilename().contains(penguinCsvBean.getTaxonKey()))
+                .medias(media == null ? List.of() : media.stream()
+                        .filter(file -> file.getFilename().contains(penguinCsvBean.getTaxonKey()))
                         .toList()
                 )
                 .build();

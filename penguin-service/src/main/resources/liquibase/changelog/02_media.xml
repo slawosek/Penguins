@@ -5,9 +5,9 @@
 
     <changeSet id="2" author="slawosek">
 
-        <createTable tableName="penguin_images">
+        <createTable tableName="penguin_medias">
             <column name="uuid" type="UUID">
-                <constraints primaryKey="true" primaryKeyName="penguin_images__PK"/>
+                <constraints primaryKey="true" primaryKeyName="penguin_medias__PK"/>
             </column>
             <column name="filename" type="VARCHAR(512)">
                 <constraints nullable="false"/>
@@ -19,7 +19,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="penguin_taxon_key" type="VARCHAR(512)">
-                <constraints foreignKeyName="penguin_images__penguins__FK"
+                <constraints foreignKeyName="penguin_medias__penguins__FK"
                              referencedTableName="penguins"
                              referencedColumnNames="taxon_key"
                              nullable="false"/>

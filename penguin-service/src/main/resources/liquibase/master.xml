@@ -5,7 +5,7 @@
 
     <include file="classpath:liquibase/changelog/01_penguins.xml"
              relativeToChangelogFile="false"/>
-    <include file="classpath:liquibase/changelog/02_images.xml"
+    <include file="classpath:liquibase/changelog/02_media.xml"
              relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

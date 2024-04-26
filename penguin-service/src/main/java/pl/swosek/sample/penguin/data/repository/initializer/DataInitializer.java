@@ -5,16 +5,15 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.swosek.sample.penguin.csv.parser.ReaderImplementation;
-import pl.swosek.sample.penguin.data.repository.api.ImageRepository;
+import pl.swosek.sample.penguin.data.repository.api.MediaRepository;
 import pl.swosek.sample.penguin.data.repository.api.PenguinRepository;
 import pl.swosek.sample.penguin.data.repository.entity.Penguin;
-import pl.swosek.sample.penguin.data.repository.entity.PenguinImage;
-import pl.swosek.sample.penguin.data.repository.function.PenguinsCsvBeanAndImagesToEntityFunction;
-import pl.swosek.sample.penguin.data.repository.function.ResourceImagesToEntityFunction;
+import pl.swosek.sample.penguin.data.repository.entity.PenguinMedia;
+import pl.swosek.sample.penguin.data.repository.function.PenguinsCsvBeanAndMediaToEntityFunction;
+import pl.swosek.sample.penguin.data.repository.function.ResourceMediasToEntityFunction;
 import pl.swosek.sample.penguin.image.loader.ImageResourceLoader;
 
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  * Penguin data initializer.
@@ -36,41 +35,41 @@ public class DataInitializer implements InitializingBean {
     /**
      * Converter function.
      */
-    private final PenguinsCsvBeanAndImagesToEntityFunction penguinsCsvBeanToEntityFunction;
+    private final PenguinsCsvBeanAndMediaToEntityFunction penguinsCsvBeanToEntityFunction;
 
     /**
      * Image resource loader.
      */
     private final ImageResourceLoader imageResourceLoader;
 
-    private final ResourceImagesToEntityFunction resourceImagesToEntityFunction;
+    private final ResourceMediasToEntityFunction resourceMediasToEntityFunction;
 
-    private final ImageRepository imageRepository;
+    private final MediaRepository mediaRepository;
 
     @Autowired
     public DataInitializer(
             PenguinRepository penguinRepository,
             ReaderImplementation readerImplementation,
-            PenguinsCsvBeanAndImagesToEntityFunction penguinsCsvBeanToEntityFunction,
+            PenguinsCsvBeanAndMediaToEntityFunction penguinsCsvBeanToEntityFunction,
             ImageResourceLoader imageResourceLoader,
-            ResourceImagesToEntityFunction resourceImagesToEntityFunction, ImageRepository imageRepository
+            ResourceMediasToEntityFunction resourceMediasToEntityFunction, MediaRepository mediaRepository
     ) {
         this.penguinRepository = penguinRepository;
         this.readerImplementation = readerImplementation;
         this.penguinsCsvBeanToEntityFunction = penguinsCsvBeanToEntityFunction;
         this.imageResourceLoader = imageResourceLoader;
-        this.resourceImagesToEntityFunction = resourceImagesToEntityFunction;
-        this.imageRepository = imageRepository;
+        this.resourceMediasToEntityFunction = resourceMediasToEntityFunction;
+        this.mediaRepository = mediaRepository;
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
         if (penguinRepository.count() == 0) {
-            List<PenguinImage> penguinImages = resourceImagesToEntityFunction.apply(imageResourceLoader.loadImageResources());
-            List<Penguin> penguins = penguinsCsvBeanToEntityFunction.apply(readerImplementation.readDataFromCsv(), penguinImages);
-            penguins.forEach(penguin -> penguin.getImages().forEach(image -> image.setPenguin(penguin)));
+            List<PenguinMedia> penguinMedia = resourceMediasToEntityFunction.apply(imageResourceLoader.loadImageResources());
+            List<Penguin> penguins = penguinsCsvBeanToEntityFunction.apply(readerImplementation.readDataFromCsv(), penguinMedia);
+            penguins.forEach(penguin -> penguin.getMedias().forEach(image -> image.setPenguin(penguin)));
             penguinRepository.saveAll(penguins);
-            imageRepository.saveAll(penguinImages);
+            mediaRepository.saveAll(penguinMedia);
         }
     }
 
