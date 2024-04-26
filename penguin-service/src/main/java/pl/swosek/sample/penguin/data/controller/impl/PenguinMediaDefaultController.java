@@ -6,9 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import pl.swosek.sample.penguin.data.controller.api.PenguinImageController;
-import pl.swosek.sample.penguin.data.repository.entity.PenguinImage;
-import pl.swosek.sample.penguin.data.service.api.PenguinImageService;
+import pl.swosek.sample.penguin.data.controller.api.PenguinMediaController;
+import pl.swosek.sample.penguin.data.repository.entity.PenguinMedia;
+import pl.swosek.sample.penguin.data.service.api.PenguinMediaService;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,18 +19,18 @@ import java.util.logging.Level;
  */
 @RestController
 @Log
-public class PenguinImageDefaultController implements PenguinImageController {
+public class PenguinMediaDefaultController implements PenguinMediaController {
 
-    private final PenguinImageService penguinImageService;
+    private final PenguinMediaService penguinMediaService;
 
     @Autowired
-    public PenguinImageDefaultController(PenguinImageService penguinImageService) {
-        this.penguinImageService = penguinImageService;
+    public PenguinMediaDefaultController(PenguinMediaService penguinMediaService) {
+        this.penguinMediaService = penguinMediaService;
     }
 
     @Override
     public ResponseEntity<byte[]> getPenguinImage(String taxonKey) {
-        Optional<PenguinImage> penguinImage = penguinImageService.findByPenguinTaxonKey(taxonKey);
+        Optional<PenguinMedia> penguinImage = penguinMediaService.findByPenguinTaxonKey(taxonKey);
         log.log(Level.WARNING, penguinImage.get().getFilename());
         return ResponseEntity.ok()
                 .contentType(penguinImage.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)).getMimeType())
@@ -40,7 +40,7 @@ public class PenguinImageDefaultController implements PenguinImageController {
     }
 
     public List<String> getPenguinImages() {
-        return penguinImageService.findAll().stream().map(PenguinImage::getFilename).toList();
+        return penguinMediaService.findAll().stream().map(PenguinMedia::getFilename).toList();
     }
 
 }
