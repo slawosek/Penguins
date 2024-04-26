@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { Penguins } from "../model/penguins";
 import { Penguin } from "../model/penguin";
 import { NewPenguin } from "../model/new-penguin";
+import { ImagesInfo } from "../model/images-info";
 
 /**
  * Service responsible for managing penguins.
@@ -42,6 +43,10 @@ export class PenguinService {
    */
   putPenguin(penguin: NewPenguin, taxonKey: string): Observable<any> {
     return this.httpClient.put<NewPenguin>(`api/penguin/${taxonKey}`, penguin);
+  }
+
+  getImagesInfo(): Observable<ImagesInfo> {
+    return this.httpClient.get<ImagesInfo>('api/images');
   }
 
 }

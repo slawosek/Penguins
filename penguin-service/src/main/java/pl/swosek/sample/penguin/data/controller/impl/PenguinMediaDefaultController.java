@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import pl.swosek.sample.penguin.data.controller.api.PenguinMediaController;
+import pl.swosek.sample.penguin.data.controller.dto.GetPenguinImagesInfo;
+import pl.swosek.sample.penguin.data.controller.function.PenguinImagesToInfoResponseFunction;
 import pl.swosek.sample.penguin.data.repository.entity.PenguinMedia;
 import pl.swosek.sample.penguin.data.service.api.PenguinMediaService;
 
@@ -20,9 +22,15 @@ public class PenguinMediaDefaultController implements PenguinMediaController {
 
     private final PenguinMediaService service;
 
+    private final PenguinImagesToInfoResponseFunction function;
+
     @Autowired
-    public PenguinMediaDefaultController(PenguinMediaService service) {
+    public PenguinMediaDefaultController(
+            PenguinMediaService service,
+            PenguinImagesToInfoResponseFunction function
+    ) {
         this.service = service;
+        this.function = function;
     }
 
     @Override
@@ -36,8 +44,8 @@ public class PenguinMediaDefaultController implements PenguinMediaController {
     }
 
     @Override
-    public List<String> getPenguinImages() {
-        return service.findAllDistinctImages().stream().map(PenguinMedia::getFilename).toList();
+    public GetPenguinImagesInfo getPenguinImages() {
+        return function.apply(service.findAllDistinctImages());
     }
 
 }

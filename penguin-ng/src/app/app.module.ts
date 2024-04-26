@@ -22,6 +22,8 @@ import { MatInput } from "@angular/material/input";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { PenguinMediaSelectionComponent } from './penguin/view/penguin-media/penguin-media-selection.component';
+import { PenguinImageComponent } from './penguin/view/component/penguin-image/penguin-image.component';
 
 /**
  * Application main module.
@@ -33,6 +35,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     MainComponent,
     MainNavigationComponent,
     PenguinFormComponent,
+    PenguinImageComponent,
+    PenguinMediaSelectionComponent,
     PenguinTableViewComponent
   ],
   imports: [

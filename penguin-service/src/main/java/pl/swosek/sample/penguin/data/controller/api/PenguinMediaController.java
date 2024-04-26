@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import pl.swosek.sample.penguin.data.controller.dto.GetPenguinImagesInfo;
 
 import java.util.List;
 
@@ -52,17 +53,17 @@ public interface PenguinMediaController {
     );
 
     /**
-     * @return penguin images filenames
+     * @return penguin images info
      */
     @Operation(
-            summary = "Get penguin images Uuids.",
-            description = "Provides penguin images Uuids of each penguin."
+            summary = "Get penguin images info.",
+            description = "Provides penguin images info of each penguin."
     )
     @ApiResponses(
             value = {
                     @ApiResponse(
                             responseCode = "200",
-                            description = "Penguin images Uuids representation."
+                            description = "Penguin images info representation."
                     ),
                     @ApiResponse(
                             responseCode = "404",
@@ -74,7 +75,7 @@ public interface PenguinMediaController {
             value = "/api/images",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    List<String> getPenguinImages();
+    GetPenguinImagesInfo getPenguinImages();
 
 
 
