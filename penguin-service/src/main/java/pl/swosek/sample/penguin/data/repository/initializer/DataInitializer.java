@@ -14,7 +14,6 @@ import pl.swosek.sample.penguin.data.repository.function.ResourceMediasToEntityF
 import pl.swosek.sample.penguin.image.loader.MediaResourceLoader;
 
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  * Penguin data initializer.
@@ -67,7 +66,6 @@ public class DataInitializer implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         if (penguinRepository.count() == 0) {
             List<PenguinMedia> penguinMedia = resourceMediasToEntityFunction.apply(mediaResourceLoader.loadMediaResources());
-            log.log(Level.WARNING, penguinMedia.get(0).getFilename());
             List<Penguin> penguins = penguinsCsvBeanToEntityFunction.apply(readerImplementation.readDataFromCsv(), penguinMedia);
             penguins.forEach(penguin -> penguin.getMedias().forEach(media -> media.setPenguin(penguin)));
             penguinRepository.saveAll(penguins);
