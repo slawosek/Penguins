@@ -1,5 +1,10 @@
-<video *ngIf="source" class="record__media" controls>
-  <source [src]="source" type='video/mp4'/>
-</video>
-<p>Video by Karson</p>
-<a href="https://www.pexels.com/video/penguins-resting-while-on-the-rocks-6299729/">Source link</a>
+<div *ngIf="source; else noVideoStatement" >
+  <video class="record__media" controls>
+    <source [src]="source" type='video/mp4'/>
+  </video>
+  <p>Video by Karson</p>
+  <a href="https://www.pexels.com/video/penguins-resting-while-on-the-rocks-6299729/">Source link</a>
+</div>
+<ng-template #noVideoStatement>
+  <p>No video for this penguin available.</p>
+</ng-template>
