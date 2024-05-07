@@ -17,7 +17,7 @@ public class PenguinVideoInfoToResponseFunction implements Function<PenguinMedia
     public GetPenguinVideoInfo apply(PenguinMedia penguinMedia) {
         return GetPenguinVideoInfo.builder()
                 .source(WebMvcLinkBuilder.linkTo(methodOn(PenguinMediaController.class)
-                                .getPenguinImage(penguinMedia.getPenguin().getTaxonKey()))
+                                .getPenguinVideo(penguinMedia.getPenguin().getTaxonKey()))
                         .toUri())
                 .build();
     }
